@@ -62,6 +62,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Targeting Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""36f425d6-b62e-4cec-8e6f-24948f201c63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Camera Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57a62b19-1a14-48dd-bd6b-c324815b3ef1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Targeting Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -202,6 +222,114 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Targeting Mode"",
+            ""id"": ""47e91619-d765-4f31-afd5-4613a33853ec"",
+            ""actions"": [
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""fa38b9a9-53e0-49dd-9b37-2d887dd3b0df"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""78db09c1-49d4-4933-94a5-50a27f177231"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Perform Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc9a3950-f933-4669-b2cd-303d07379319"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unit View"",
+                    ""type"": ""Button"",
+                    ""id"": ""e25693af-6333-4557-922c-1ff8ac0e7047"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enable Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff0948dc-67c0-4b0e-9af9-2e50673cec00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""95afeb39-7ec6-4a54-b59e-6e754f84b3b4"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e5650d5-d1cc-4ec8-ab32-dc9716de6ee4"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Select Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""885a3b79-a9b2-4ad4-b8e1-0d70eacca00a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Perform Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""120b07cc-825b-43f5-9851-4d09b3a892d5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Unit View"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d816ca6-c91c-48ad-bfd6-2e0afb2a1abc"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Enable Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -218,10 +346,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UnitView_MoveCamera = m_UnitView.FindAction("Move Camera", throwIfNotFound: true);
         m_UnitView_LeaveUnitView = m_UnitView.FindAction("Leave Unit View", throwIfNotFound: true);
         m_UnitView_CameraSelect = m_UnitView.FindAction("Camera Select", throwIfNotFound: true);
+        m_UnitView_TargetingMode = m_UnitView.FindAction("Targeting Mode", throwIfNotFound: true);
         // Map View
         m_MapView = asset.FindActionMap("Map View", throwIfNotFound: true);
         m_MapView_Select = m_MapView.FindAction("Select", throwIfNotFound: true);
         m_MapView_Cursor = m_MapView.FindAction("Cursor", throwIfNotFound: true);
+        // Targeting Mode
+        m_TargetingMode = asset.FindActionMap("Targeting Mode", throwIfNotFound: true);
+        m_TargetingMode_Aim = m_TargetingMode.FindAction("Aim", throwIfNotFound: true);
+        m_TargetingMode_SelectAction = m_TargetingMode.FindAction("Select Action", throwIfNotFound: true);
+        m_TargetingMode_PerformAction = m_TargetingMode.FindAction("Perform Action", throwIfNotFound: true);
+        m_TargetingMode_UnitView = m_TargetingMode.FindAction("Unit View", throwIfNotFound: true);
+        m_TargetingMode_EnableAim = m_TargetingMode.FindAction("Enable Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,6 +423,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UnitView_MoveCamera;
     private readonly InputAction m_UnitView_LeaveUnitView;
     private readonly InputAction m_UnitView_CameraSelect;
+    private readonly InputAction m_UnitView_TargetingMode;
     public struct UnitViewActions
     {
         private @InputActions m_Wrapper;
@@ -295,6 +432,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_UnitView_MoveCamera;
         public InputAction @LeaveUnitView => m_Wrapper.m_UnitView_LeaveUnitView;
         public InputAction @CameraSelect => m_Wrapper.m_UnitView_CameraSelect;
+        public InputAction @TargetingMode => m_Wrapper.m_UnitView_TargetingMode;
         public InputActionMap Get() { return m_Wrapper.m_UnitView; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,6 +454,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CameraSelect.started += instance.OnCameraSelect;
             @CameraSelect.performed += instance.OnCameraSelect;
             @CameraSelect.canceled += instance.OnCameraSelect;
+            @TargetingMode.started += instance.OnTargetingMode;
+            @TargetingMode.performed += instance.OnTargetingMode;
+            @TargetingMode.canceled += instance.OnTargetingMode;
         }
 
         private void UnregisterCallbacks(IUnitViewActions instance)
@@ -332,6 +473,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CameraSelect.started -= instance.OnCameraSelect;
             @CameraSelect.performed -= instance.OnCameraSelect;
             @CameraSelect.canceled -= instance.OnCameraSelect;
+            @TargetingMode.started -= instance.OnTargetingMode;
+            @TargetingMode.performed -= instance.OnTargetingMode;
+            @TargetingMode.canceled -= instance.OnTargetingMode;
         }
 
         public void RemoveCallbacks(IUnitViewActions instance)
@@ -403,6 +547,84 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public MapViewActions @MapView => new MapViewActions(this);
+
+    // Targeting Mode
+    private readonly InputActionMap m_TargetingMode;
+    private List<ITargetingModeActions> m_TargetingModeActionsCallbackInterfaces = new List<ITargetingModeActions>();
+    private readonly InputAction m_TargetingMode_Aim;
+    private readonly InputAction m_TargetingMode_SelectAction;
+    private readonly InputAction m_TargetingMode_PerformAction;
+    private readonly InputAction m_TargetingMode_UnitView;
+    private readonly InputAction m_TargetingMode_EnableAim;
+    public struct TargetingModeActions
+    {
+        private @InputActions m_Wrapper;
+        public TargetingModeActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Aim => m_Wrapper.m_TargetingMode_Aim;
+        public InputAction @SelectAction => m_Wrapper.m_TargetingMode_SelectAction;
+        public InputAction @PerformAction => m_Wrapper.m_TargetingMode_PerformAction;
+        public InputAction @UnitView => m_Wrapper.m_TargetingMode_UnitView;
+        public InputAction @EnableAim => m_Wrapper.m_TargetingMode_EnableAim;
+        public InputActionMap Get() { return m_Wrapper.m_TargetingMode; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TargetingModeActions set) { return set.Get(); }
+        public void AddCallbacks(ITargetingModeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TargetingModeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TargetingModeActionsCallbackInterfaces.Add(instance);
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @SelectAction.started += instance.OnSelectAction;
+            @SelectAction.performed += instance.OnSelectAction;
+            @SelectAction.canceled += instance.OnSelectAction;
+            @PerformAction.started += instance.OnPerformAction;
+            @PerformAction.performed += instance.OnPerformAction;
+            @PerformAction.canceled += instance.OnPerformAction;
+            @UnitView.started += instance.OnUnitView;
+            @UnitView.performed += instance.OnUnitView;
+            @UnitView.canceled += instance.OnUnitView;
+            @EnableAim.started += instance.OnEnableAim;
+            @EnableAim.performed += instance.OnEnableAim;
+            @EnableAim.canceled += instance.OnEnableAim;
+        }
+
+        private void UnregisterCallbacks(ITargetingModeActions instance)
+        {
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @SelectAction.started -= instance.OnSelectAction;
+            @SelectAction.performed -= instance.OnSelectAction;
+            @SelectAction.canceled -= instance.OnSelectAction;
+            @PerformAction.started -= instance.OnPerformAction;
+            @PerformAction.performed -= instance.OnPerformAction;
+            @PerformAction.canceled -= instance.OnPerformAction;
+            @UnitView.started -= instance.OnUnitView;
+            @UnitView.performed -= instance.OnUnitView;
+            @UnitView.canceled -= instance.OnUnitView;
+            @EnableAim.started -= instance.OnEnableAim;
+            @EnableAim.performed -= instance.OnEnableAim;
+            @EnableAim.canceled -= instance.OnEnableAim;
+        }
+
+        public void RemoveCallbacks(ITargetingModeActions instance)
+        {
+            if (m_Wrapper.m_TargetingModeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ITargetingModeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TargetingModeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TargetingModeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public TargetingModeActions @TargetingMode => new TargetingModeActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -418,10 +640,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnLeaveUnitView(InputAction.CallbackContext context);
         void OnCameraSelect(InputAction.CallbackContext context);
+        void OnTargetingMode(InputAction.CallbackContext context);
     }
     public interface IMapViewActions
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnCursor(InputAction.CallbackContext context);
+    }
+    public interface ITargetingModeActions
+    {
+        void OnAim(InputAction.CallbackContext context);
+        void OnSelectAction(InputAction.CallbackContext context);
+        void OnPerformAction(InputAction.CallbackContext context);
+        void OnUnitView(InputAction.CallbackContext context);
+        void OnEnableAim(InputAction.CallbackContext context);
     }
 }
