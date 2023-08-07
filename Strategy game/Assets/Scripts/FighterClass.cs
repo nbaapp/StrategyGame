@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Actions
-{
-    Attack,
-    Defend,
-    Dash
-}
+
 
 public class FighterClass : MonoBehaviour
 {
+    private enum Actions
+    {
+        Attack,
+        Defend,
+        Dash
+    }
+
     private Logic logic;
     private UIManager uiManager;
     private PlayerUnit unit;
-    public Actions action = Actions.Attack;
+    private Animator animator;
+    private Actions action = Actions.Attack;
 
-    public int numberOfActoins = 2;
+    public int actionPoints = 2;
     public float attackRange = 5f;
+
+    public float mainAttackDamage = 10f;
 
     public bool isDefending = false;
     // Start is called before the first frame update
@@ -26,6 +31,7 @@ public class FighterClass : MonoBehaviour
         logic = GameObject.Find("Logic").GetComponent<Logic>();
         uiManager = FindObjectOfType<UIManager>();
         unit = gameObject.GetComponent<PlayerUnit>();
+        animator = gameObject.GetComponent<Animator>();
         
         unit.targetingArea.transform.localScale = new Vector3(attackRange * 2, unit.targetingArea.transform.localScale.y, attackRange * 2);
 
@@ -66,12 +72,13 @@ public class FighterClass : MonoBehaviour
     //function to perform the action
     public void PerformAction()
     {
-        if (logic.inputActions.TargetingMode.PerformAction.triggered && unit.isTargeting && numberOfActoins >= 0)
+        if (logic.inputActions.TargetingMode.PerformAction.triggered && unit.isTargeting && actionPoints > 0)
         {
-            numberOfActoins--;
+            actionPoints--;
+            uiManager.UpdateAPText(actionPoints);
             if (action == Actions.Attack)
             {
-                Debug.Log("Attack");
+                Attack();
             }
             else if (action == Actions.Defend)
             {
@@ -82,6 +89,12 @@ public class FighterClass : MonoBehaviour
                 Dash();
             }
         }
+    }
+
+    //attack function
+    private void Attack()
+    {
+        animator.SetTrigger("Fighter Attack");
     }
 
     //defend function

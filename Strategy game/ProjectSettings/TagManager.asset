@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player Unit
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - ' Player Attack'
+  - Enemy Unit
+  - Enemy Attack
+  - Map
   - 
   - 
   - 

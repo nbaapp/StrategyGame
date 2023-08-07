@@ -11,6 +11,7 @@ public class PlayerUnit : MonoBehaviour
     public Camera targetingCamera;
     public Renderer objectRenderer;
     public GameObject targetingArea;
+    private HealthBar healthBar;
 
     public float maxHealth = 100f;
     public float health;
@@ -31,8 +32,10 @@ public class PlayerUnit : MonoBehaviour
         unitCamera = transform.Find("Unit Camera").GetComponent<Camera>();
         targetingCamera = transform.Find("Targeting Camera").GetComponent<Camera>();
         controller = gameObject.GetComponent<CharacterController>();
+        healthBar = gameObject.GetComponentInChildren<HealthBar>();
 
         health = maxHealth;
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class PlayerUnit : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0)
         {
             Die();

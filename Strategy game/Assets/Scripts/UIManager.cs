@@ -5,9 +5,10 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    private Logic logic;
+    public Logic logic;
     public TextMeshProUGUI turnText;
     public TextMeshProUGUI selectedActionText;
+    public TextMeshProUGUI apText;
     public GameObject mapUI;
     public GameObject unitMoveUI;
     public GameObject targetingUI;
@@ -15,7 +16,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        logic = FindObjectOfType<Logic>();
+
     }
 
     //activate unit move UI and deactivate all other UI
@@ -40,6 +41,12 @@ public class UIManager : MonoBehaviour
         unitMoveUI.SetActive(false);
         targetingUI.SetActive(false);
         mapUI.SetActive(true);
+    }
+
+    //update the AP text with the current AP
+    public void UpdateAPText(int ap)
+    {
+        apText.text = "AP: " + ap;
     }
 
     //update the selected action text

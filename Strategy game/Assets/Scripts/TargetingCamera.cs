@@ -16,7 +16,7 @@ public class TargetingCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         RotateCamera();
     }
@@ -28,6 +28,10 @@ public class TargetingCamera : MonoBehaviour
             Vector2 rotation = logic.inputActions.TargetingMode.Aim.ReadValue<Vector2>();
             transform.RotateAround(transform.position, Vector3.up, rotation.x * sensitivity);
             transform.RotateAround(transform.position, transform.right, -rotation.y * sensitivity);
+
+            transform.parent = null;
+            unit.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            transform.parent = unit.transform;
         }
     }
 }
