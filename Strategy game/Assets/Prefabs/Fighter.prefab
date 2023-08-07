@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4038754740105031962}
   m_Layer: 3
   m_Name: Unit Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 8503466997745460884}
   m_Layer: 3
   m_Name: Targeting Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

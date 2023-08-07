@@ -50,6 +50,11 @@ public class EnemyUnit : MonoBehaviour
                 TheifClass incomingAttacker = other.transform.GetComponentInParent<TheifClass>();
                 TakeDamage(incomingAttacker.mainAttackDamage);
             }
+            else if (other.transform.GetComponentInParent<RangerClass>() != null)
+            {
+                RangerClass incomingAttacker = other.transform.GetComponentInParent<RangerClass>();
+                TakeDamage(incomingAttacker.mainAttackDamage);
+            }
         }
     }
 
