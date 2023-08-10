@@ -10,8 +10,10 @@ public class PlayerUnit : MonoBehaviour
     public Camera unitCamera;
     public Camera targetingCamera;
     public Renderer objectRenderer;
-    public GameObject targetingArea;
     private HealthBar healthBar;
+    public TargetingCamera targetCamera;
+
+    public float attackRange;
 
     public float maxHealth = 100f;
     public float health;
@@ -24,6 +26,7 @@ public class PlayerUnit : MonoBehaviour
     public bool isSelected = false;
     public bool isTargeting = false;
     public bool hasMoved = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class PlayerUnit : MonoBehaviour
         targetingCamera = transform.Find("Targeting Camera").GetComponent<Camera>();
         controller = gameObject.GetComponent<CharacterController>();
         healthBar = gameObject.GetComponentInChildren<HealthBar>();
+        targetCamera = gameObject.GetComponentInChildren<TargetingCamera>();
 
         health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
@@ -48,6 +52,30 @@ public class PlayerUnit : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    public void SetAttackRange()
+    {
+        if (GetComponent<MageClass>() != null)
+        {
+            MageClass mage = GetComponent<MageClass>();
+            attackRange = mage.currentAttackRange;
+        }
+        else if (GetComponent<RangerClass>() != null)
+        {
+            RangerClass ranger = GetComponent<RangerClass>();
+            attackRange = ranger.currentAttackRange;
+        }
+        else if (GetComponent<TheifClass>() != null)
+        {
+            TheifClass theif = GetComponent<TheifClass>();
+            attackRange = theif.currentAttackRange;
+        }
+        else if (GetComponent<FighterClass>() != null)
+        {
+            FighterClass fighter = GetComponent<FighterClass>();
+            attackRange = fighter.currentAttackRange;
+        }
     }
 
     private void Move()

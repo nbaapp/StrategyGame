@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthBar;
 
-    private void Start()
+    private void Awake()
     {
         healthBar = gameObject.GetComponent<Slider>();
     }
@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour
     {
         if (Camera.current != null)
         {
-            transform.LookAt(Camera.current.transform);
+            transform.LookAt(Camera.main.transform);
         }
     }
     public void UpdateHealthBar(float health, float maxHealth)

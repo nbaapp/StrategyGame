@@ -14,6 +14,8 @@ public class Logic : MonoBehaviour
 
     public bool isPlayerTurn = true;
 
+    public float targetCameraSensitivity = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +78,7 @@ public class Logic : MonoBehaviour
             unit.targetingCamera.enabled = true;
             unit.unitCamera.enabled = false;
 
-            unit.targetingArea.SetActive(true);
+            unit.SetAttackRange();
 
             uiManager.ActivateTargetingUI();
         }
@@ -94,7 +96,7 @@ public class Logic : MonoBehaviour
             unit.unitCamera.enabled = true;
             unit.targetingCamera.enabled = false;
 
-            unit.targetingArea.SetActive(false);
+            unit.targetCamera.targetedEnemy = null;
 
             uiManager.ActivateUnitMoveUI();
         }

@@ -19,9 +19,13 @@ public class MageClass : MonoBehaviour
     private Actions action = Actions.Attack;
 
     public int actionPoints = 2;
-    public float attackRange = 5f;
 
+    public float mainAttackRange = 5f;
     public float mainAttackDamage = 10f;
+
+    public float fireballAttackRange = 10f;
+
+    public float currentAttackRange;
 
     public bool isDefending = false;
     // Start is called before the first frame update
@@ -32,7 +36,7 @@ public class MageClass : MonoBehaviour
         unit = gameObject.GetComponent<PlayerUnit>();
         animator = gameObject.GetComponent<Animator>();
 
-        unit.targetingArea.transform.localScale = new Vector3(attackRange * 2, unit.targetingArea.transform.localScale.y, attackRange * 2);
+        currentAttackRange = mainAttackRange;
 
         uiManager.UpdateSelectedActionText(action.ToString());
     }
@@ -52,23 +56,33 @@ public class MageClass : MonoBehaviour
         {
             if (action == Actions.Attack)
             {
+                //switch to fireball
                 action = Actions.Fireball;
                 uiManager.UpdateSelectedActionText("Fireball");
+
+                currentAttackRange = fireballAttackRange;
+                unit.attackRange = currentAttackRange;
             }
             else if (action == Actions.Fireball)
             {
+                //switch to defend
                 action = Actions.Defend;
                 uiManager.UpdateSelectedActionText("Defend");
             }
             else if (action == Actions.Defend)
             {
+                //switch to dash
                 action = Actions.Dash;
                 uiManager.UpdateSelectedActionText("Dash");
             }
             else if (action == Actions.Dash)
             {
+                //switch to attack
                 action = Actions.Attack;
                 uiManager.UpdateSelectedActionText("Attack");
+
+                currentAttackRange = mainAttackRange;
+                unit.attackRange = currentAttackRange;
             }
         }
     }
@@ -103,6 +117,10 @@ public class MageClass : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Mage Attack");
+        if (unit.targetCamera.targetedEnemy != null)
+        {
+            unit.targetCamera.targetedEnemy.TakeDamage(mainAttackDamage);
+        }
     }
 
     //fireball function

@@ -7,6 +7,8 @@ public class EnemyUnit : MonoBehaviour
     private Logic logic;
     private CharacterController controller;
     private HealthBar healthBar;
+    private Renderer objectRenderer;
+    private TargetingCamera targetingCamera;
 
     public float maxHealth = 100f;
     public float health;
@@ -25,10 +27,34 @@ public class EnemyUnit : MonoBehaviour
     {
         logic = GameObject.Find("Logic").GetComponent<Logic>();
         controller = gameObject.GetComponent<CharacterController>();
+        objectRenderer = gameObject.GetComponent<Renderer>();
         healthBar = gameObject.GetComponentInChildren<HealthBar>();
 
         health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
+    }
+
+    private void Update()
+    {
+        Targeted();
+    }
+
+    private void Targeted()
+    {
+        if (isTargeted)
+        {
+            if (Camera.main.gameObject.GetComponent<TargetingCamera>() != null)
+            {
+                targetingCamera = Camera.main.gameObject.GetComponent<TargetingCamera>();
+                objectRenderer.material.color = Color.green;
+            }
+            else if (targetingCamera.targetedEnemy != this)
+            {
+                isTargeted = false;
+                objectRenderer.material.color = Color.red;
+            }
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

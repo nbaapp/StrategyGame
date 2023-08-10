@@ -16,12 +16,15 @@ public class TheifClass : MonoBehaviour
     private UIManager uiManager;
     private PlayerUnit unit;
     private Animator animator;
+
     private Actions action = Actions.Attack;
 
     public int actionPoints = 2;
-    public float attackRange = 5f;
 
+    public float mainAttackRange = 5f;
     public float mainAttackDamage = 10f;
+
+    public float currentAttackRange;
 
     public bool isDefending = false;
     // Start is called before the first frame update
@@ -32,8 +35,8 @@ public class TheifClass : MonoBehaviour
         unit = gameObject.GetComponent<PlayerUnit>();
         animator = gameObject.GetComponent<Animator>();
 
-        unit.targetingArea.transform.localScale = new Vector3(attackRange * 2, unit.targetingArea.transform.localScale.y, attackRange * 2);
-
+        currentAttackRange = mainAttackRange;
+ 
         uiManager.UpdateSelectedActionText(action.ToString());
     }
 
@@ -52,23 +55,30 @@ public class TheifClass : MonoBehaviour
         {
             if (action == Actions.Attack)
             {
+                //switch to hide
                 action = Actions.Hide;
                 uiManager.UpdateSelectedActionText("Hide");
             }
             else if (action == Actions.Hide)
             {
+                //switch to defend
                 action = Actions.Defend;
                 uiManager.UpdateSelectedActionText("Defend");
             }
             else if (action == Actions.Defend)
             {
+                //switch to dash
                 action = Actions.Dash;
                 uiManager.UpdateSelectedActionText("Dash");
             }
             else if (action == Actions.Dash)
             {
+                //switch to attack
                 action = Actions.Attack;
                 uiManager.UpdateSelectedActionText("Attack");
+
+                currentAttackRange = mainAttackRange;
+                unit.attackRange = currentAttackRange;
             }
         }
     }
@@ -103,6 +113,10 @@ public class TheifClass : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Theif Attack");
+        if (unit.targetCamera.targetedEnemy != null)
+        {
+            unit.targetCamera.targetedEnemy.TakeDamage(mainAttackDamage);
+        }
     }
 
     //fireball function
