@@ -16,6 +16,7 @@ public class MageClass : MonoBehaviour
     private UIManager uiManager;
     private PlayerUnit unit;
     private Animator animator;
+    public GameObject fireball;
     private Actions action = Actions.Attack;
 
     public int actionPoints = 2;
@@ -92,15 +93,14 @@ public class MageClass : MonoBehaviour
     {
         if (logic.inputActions.TargetingMode.PerformAction.triggered && unit.isTargeting && actionPoints > 0)
         {
-            actionPoints--;
             uiManager.UpdateAPText(actionPoints);
             if (action == Actions.Attack)
             {
                 Attack();
             }
-            if (action == Actions.Fireball)
+            if (action == Actions.Fireball && actionPoints >= 2)
             {
-                //Fireball();
+                Fireball();
             }
             else if (action == Actions.Defend)
             {
@@ -121,23 +121,42 @@ public class MageClass : MonoBehaviour
         {
             unit.targetCamera.targetedEnemy.TakeDamage(mainAttackDamage);
         }
+        actionPoints--;
     }
 
     //fireball function
     private void Fireball()
     {
         animator.SetTrigger("Mage Fireball");
+
+        TargetingCamera camera = unit.targetingCamera.GetComponent<TargetingCamera>();
+
+        if (camera.isActiveAndEnabled)
+        {
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, Mathf.Infinity))
+            {
+                if (hitInfo.transform.gameObject.layer == 10 && hitInfo.distance < fireballAttackRange)
+                {
+                    Instantiate(fireball, hitInfo.point, Quaternion.identity);
+                }
+            }
+        }
+        actionPoints -= 2;
     }
 
     //defend function
     private void Defend()
     {
         isDefending = true;
+        actionPoints--;
     }
 
     //dash function
     private void Dash()
     {
         unit.distanceLeft += unit.maxMoveDistance;
+        actionPoints--;
     }
 }

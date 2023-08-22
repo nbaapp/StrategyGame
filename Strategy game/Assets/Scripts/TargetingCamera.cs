@@ -43,14 +43,14 @@ public class TargetingCamera : MonoBehaviour
                     targetedEnemy = hitInfo.transform.gameObject.GetComponent<EnemyUnit>();
                     targetedEnemy.isTargeted = true;
                 }
-                else
+                else if (targetedEnemy != null)
                 {
                     targetedEnemy.isTargeted = false;
                     targetedEnemy = null;
                 }
             }
         }
-        else
+        else if (targetedEnemy != null)
         {
             targetedEnemy.isTargeted = false;
             targetedEnemy = null;

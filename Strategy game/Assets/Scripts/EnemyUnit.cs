@@ -29,6 +29,7 @@ public class EnemyUnit : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         objectRenderer = gameObject.GetComponent<Renderer>();
         healthBar = gameObject.GetComponentInChildren<HealthBar>();
+        targetingCamera = GameObject.FindFirstObjectByType<TargetingCamera>();
 
         health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
@@ -54,7 +55,11 @@ public class EnemyUnit : MonoBehaviour
                 objectRenderer.material.color = Color.red;
             }
         }
-        
+        else if (targetingCamera.targetedEnemy != this)
+        {
+            isTargeted = false;
+            objectRenderer.material.color = Color.red;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -80,6 +85,11 @@ public class EnemyUnit : MonoBehaviour
             {
                 RangerClass incomingAttacker = other.transform.GetComponentInParent<RangerClass>();
                 TakeDamage(incomingAttacker.mainAttackDamage);
+            }
+            else if (other.gameObject.GetComponentInParent<Fireball>() != null)
+            {
+                Fireball fireball = other.gameObject.GetComponentInParent<Fireball>();
+                TakeDamage(fireball.fireballDamage);
             }
         }
     }

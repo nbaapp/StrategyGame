@@ -260,7 +260,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -340,7 +340,6 @@ MonoBehaviour:
   unitCamera: {fileID: 0}
   targetingCamera: {fileID: 0}
   objectRenderer: {fileID: 0}
-  targetingArea: {fileID: 0}
   targetCamera: {fileID: 0}
   attackRange: 0
   maxHealth: 100

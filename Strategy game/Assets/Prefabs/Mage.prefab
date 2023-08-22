@@ -162,7 +162,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5090,6 +5090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e2172e7789c9f499e6faa8b59900c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireball: {fileID: 1784658585036887419, guid: 894577ab0af348c449a50cc8e9f836c0, type: 3}
   actionPoints: 2
   mainAttackRange: 150
   mainAttackDamage: 50
@@ -5263,7 +5264,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
